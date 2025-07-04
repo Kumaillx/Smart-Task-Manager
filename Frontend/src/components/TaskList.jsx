@@ -13,7 +13,7 @@ function TaskList({ tasks, onUpdate }) {
 
   const deleteTask = async (id) => {
     await axios.delete(`http://localhost:5000/api/tasks/${id}`);
-    onUpdate(); // refresh tasks from DB
+    onUpdate(); // refreshes task from DB
   };
 
   if (tasks.length === 0) {

@@ -11,10 +11,12 @@ function App() {
 
   // Fetch tasks from backend
   const fetchTasks = async () => {
-    try {
+    try 
+    {
       const res = await axios.get('http://localhost:5000/api/tasks');
       setTasks(res.data);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error fetching tasks:', error);
     }
   };

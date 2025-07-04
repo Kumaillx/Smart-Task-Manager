@@ -24,14 +24,18 @@ function TaskForm({ onAdd }) {
     setSuccess(true);
     onAdd();
 
-    // Hide success after 2 seconds
+    // After 2 seconds text fades out
     setTimeout(() => setSuccess(false), 2000);
   };
 
   return (
+
     <form onSubmit={handleSubmit} className="task-form">
+      
       <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Task Title" required />
+      
       <input value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" />
+      
       <input type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
       <button type="submit">Add Task</button>
       {success && <div className="success-msg">✅ Task Added!</div>}
