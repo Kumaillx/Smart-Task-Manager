@@ -193,3 +193,13 @@ label {
     width: 100%;
   }
 }
+
+.edit-btn {
+  background-color: #17a2b8;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #138496;
+}

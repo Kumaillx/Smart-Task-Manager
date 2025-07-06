@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-function TaskList({ tasks, onUpdate }) {
+function TaskList({ tasks, onUpdate, onEdit }) {
   const toggleComplete = async (task) => {
     await axios.put(`http://localhost:5000/api/tasks/${task.id}`, {
       ...task,
@@ -12,7 +12,7 @@ function TaskList({ tasks, onUpdate }) {
 
   const deleteTask = async (id) => {
     await axios.delete(`http://localhost:5000/api/tasks/${id}`);
-    onUpdate(); // refresh task list
+    onUpdate();
   };
 
   const getDeadlineStatus = (deadline) => {
@@ -44,6 +44,7 @@ function TaskList({ tasks, onUpdate }) {
             <button onClick={() => toggleComplete(task)}>
               {task.completed ? 'Undo' : 'Done'}
             </button>
+            <button onClick={() => onEdit(task)} className="edit-btn">Edit</button>
             <button onClick={() => deleteTask(task.id)} className="delete-btn">Delete</button>
           </li>
         );
