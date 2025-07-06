@@ -204,27 +204,151 @@ label {
   background-color: #138496;
 }
 
-.login-container {
-  max-width: 400px;
-  margin: 100px auto;
-  background: white;
-  padding: 30px;
+/* ===== Base Layout and Gradient Background ===== */
+.login-wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page {
+  display: flex;
+  width: 90%;
+  height: 90vh;
+  max-width: 1200px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ===== Welcome Section ===== */
+.welcome-section {
+  flex: 1;
+  background: linear-gradient(135deg, #6b48ff, #ff6b6b);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.welcome-section h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.welcome-section p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* ===== Login Container ===== */
+.login-container {
+  flex: 1;
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.logout-btn {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  /* padding: 6px 12px; */
-  border-radius: 6px;
-  cursor: pointer;
-  float: right;
-  margin-top: -20px;
+/* ===== Login Title ===== */
+.login-title {
+  color: #6b48ff;
+  font-size: 1.5em;
+  margin-bottom: 30px;
 }
 
-.logout-btn:hover {
-  background-color: #b52a3a;
+/* ===== Login Form Inputs ===== */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  background-color: #e6e6ff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* ===== Checkbox and Forgot Password ===== */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #6b48ff;
+  margin: 10px 0 20px;
+}
+
+.forgot-password {
+  text-decoration: none;
+  color: #6b48ff;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* ===== Login Button ===== */
+.login-button {
+  background: linear-gradient(135deg, #ff6b6b, #a033c7);
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #ff4d4d, #8a2be2);
+}
+
+/* ===== Responsive Support ===== */
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+  }
+
+  .welcome-section,
+  .login-container {
+    flex: unset;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .welcome-section h1 {
+    font-size: 2em;
+  }
+
+  .welcome-section p {
+    font-size: 1em;
+    max-width: none;
+  }
+}
+.welcome-text {
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-top: 20px;
+  text-align: justify;
 }
