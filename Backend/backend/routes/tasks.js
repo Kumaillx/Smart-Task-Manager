@@ -47,7 +47,7 @@ router.delete('/:id', (req, res) => {
 
 //Debug
 router.post('/', (req, res) => {
-  console.log('POST /api/tasks called with:', req.body); // 🔍
+  console.log('POST /api/tasks called with:', req.body); 
   const { title, category, deadline } = req.body;
 });
 

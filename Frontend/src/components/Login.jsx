@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import './index.css';
 import JeenyImg from '../assets/Jeeny-logo.png';
 
 function Login({ onLogin }) {
@@ -8,7 +7,9 @@ function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username.trim()) {
+    
+    if (username.trim()) 
+    {
       localStorage.setItem('user', username);
       onLogin(username);
     }
@@ -16,7 +17,9 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-wrapper">
+      
       <div className="login-page">
+        
         <div className="welcome-section">
             <div className="logo-header">
                 <img src={JeenyImg} alt="Jeeny Logo" className="logo-img" />
@@ -34,8 +37,10 @@ function Login({ onLogin }) {
             
           </p>
         </div>
-        <div className="login-container">
+        
+    <div className="login-container">
           <h2 className="login-title">USER LOGIN</h2>
+          
           <form onSubmit={handleSubmit} className="login-form">
             <input
               type="text"
@@ -44,6 +49,7 @@ function Login({ onLogin }) {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+            
             <input
               type="password"
               placeholder="Password"
@@ -51,6 +57,7 @@ function Login({ onLogin }) {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            
             <div className="login-options">
               <label>
                 <input type="checkbox" />
@@ -58,10 +65,14 @@ function Login({ onLogin }) {
               </label>
               <a href="#" className="forgot-password">Forgot password?</a>
             </div>
+            
             <button type="submit" className="login-button">LOGIN</button>
           </form>
+        
         </div>
+      
       </div>
+    
     </div>
   );
 }
