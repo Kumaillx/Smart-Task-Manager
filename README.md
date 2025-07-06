@@ -102,6 +102,9 @@ For questions or feedback, please contact [your.email@example.com](mailto:your.e
 ---
 
 ## ⚙️ How to Run the Project
+### Login Page :
+
+Just Put some random Text and you would be good to go.
 
 ### 📌 Backend
 
