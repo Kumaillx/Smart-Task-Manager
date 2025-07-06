@@ -352,3 +352,31 @@ label {
   margin-top: 20px;
   text-align: justify;
 }
+
+/* Styles for the logo header */
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 30px; */
+}
+
+.logo-img {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  margin-right: 12px;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid rgb(252, 17, 213);
+
+}
+
+
+.logo-text {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: white;
+}

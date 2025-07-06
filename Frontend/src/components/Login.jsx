@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import './index.css';
+import JeenyImg from '../assets/Jeeny-logo.png';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -17,6 +18,11 @@ function Login({ onLogin }) {
     <div className="login-wrapper">
       <div className="login-page">
         <div className="welcome-section">
+            <div className="logo-header">
+                <img src={JeenyImg} alt="Jeeny Logo" className="logo-img" />
+                <span className="logo-text">Smart Task Manager</span>
+            </div>
+
           <h1>Welcome to website</h1>
           <p className='welcome-text'>
             Streamline your productivity with Smart Task Manager, 
