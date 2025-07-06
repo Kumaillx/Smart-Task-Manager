@@ -1,59 +1,40 @@
-.header {
-  text-align: center;
-  background: linear-gradient(135deg, #f26efb, #5fade1);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-}
+/* ===== Base Reset & Layout ===== */
 body {
-  font-family: Arial, sans-serif;
-  padding: 2rem;
-  background: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f5f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
 }
-
-input, select, button {
-  margin: 5px;
-  padding: 8px;
-}
-
-
-.task-item {
-  margin: 10px auto;
-  padding: 10px;
-  background: #f4f4f4;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 600px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-}
-
 
 .container {
   max-width: 700px;
   margin: 0 auto;
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
 
 .subtitle {
-  margin-top: 5px;
-  font-style: inherit;
+  margin-top: 8px;
+  font-style: italic;
   font-weight: 300;
+  font-size: 1rem;
 }
 
+/* ===== Footer ===== */
 .footer {
   margin-top: 50px;
   text-align: center;
@@ -63,75 +44,152 @@ ul {
   border-top: 1px solid #ddd;
 }
 
-
+/* ===== Task Form ===== */
 .task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.success-msg {
-  margin-top: 10px;
-  color: green;
-  font-weight: bold;
-  animation: fadeIn 0.5s ease-in-out;
+input,
+select,
+button {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+input:focus,
+select:focus {
+  border-color: #6e8efb;
+  box-shadow: 0 0 4px rgba(110, 142, 251, 0.4);
+  outline: none;
+}
+
+button {
+  background-color: #6e8efb;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #5a74d1;
+}
+
+.delete-btn {
+  background-color: #ff5f5f;
+}
+
+.delete-btn:hover {
+  background-color: #d94343;
+}
+
+/* ===== Task List Styling ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .task-item {
-  margin: 10px 0;
-  padding: 10px;
-  background: #f4f4f4;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
 }
 
 .task-text.completed {
   text-decoration: line-through;
-  color: green;
-  font-weight: bold;
+  color: #28a745;
+  font-weight: 500;
 }
 
 .check-icon {
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
-button {
-  margin-left: 10px;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(110, 142, 251, 0.15);
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-  outline: none;
+/* ===== Deadline Badges ===== */
+.deadline-badge {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  margin: 0 10px;
+  vertical-align: middle;
 }
 
-button:hover, button:focus {
-  background: linear-gradient(135deg, #5a7be7 0%, #8e5fd6 100%);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 4px 16px rgba(110, 142, 251, 0.18);
-  opacity: 1;
+.duetoday {
+  background-color: #ffc107; /* Yellow/Orange */
 }
 
-.delete-btn {
-  background: linear-gradient(135deg, #ff6961 0%, #ff9472 100%);
-  color: #fff;
-  font-weight: 600;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+.overdue {
+  background-color: #dc3545; /* Red */
 }
 
-.delete-btn:hover, .delete-btn:focus {
-  background: linear-gradient(135deg, #e85c50 0%, #ff9472 100%);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 4px 16px rgba(255, 105, 97, 0.18);
-  opacity: 1;
+/* ===== Success Message ===== */
+.success-msg {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== Filter Bar ===== */
+label {
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .task-text {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
 }

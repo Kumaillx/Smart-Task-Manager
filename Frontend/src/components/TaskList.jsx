@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 function TaskList({ tasks, onUpdate }) {
-
   const toggleComplete = async (task) => {
     await axios.put(`http://localhost:5000/api/tasks/${task.id}`, {
       ...task,
@@ -13,7 +12,14 @@ function TaskList({ tasks, onUpdate }) {
 
   const deleteTask = async (id) => {
     await axios.delete(`http://localhost:5000/api/tasks/${id}`);
-    onUpdate(); // refreshes task from DB
+    onUpdate(); // refresh task list
+  };
+
+  const getDeadlineStatus = (deadline) => {
+    const today = new Date().toISOString().split('T')[0];
+    if (deadline === today) return 'Due Today';
+    if (deadline < today) return 'Overdue';
+    return null;
   };
 
   if (tasks.length === 0) {
@@ -22,19 +28,26 @@ function TaskList({ tasks, onUpdate }) {
 
   return (
     <ul>
-      {tasks.map((task) => (
-        <li key={task.id} className="task-item">
-          <span className={`task-text ${task.completed ? 'completed' : ''}`}>
-            {Boolean(task.completed) && <span className="check-icon">✅ </span>}
-
-            {task.title} ({task.category || "No category"}) – {task.deadline}
-          </span>
-          <button onClick={() => toggleComplete(task)}>
-            {task.completed ? 'Undo' : 'Done'}
-          </button>
-          <button onClick={() => deleteTask(task.id)} className="delete-btn">Delete</button>
-        </li>
-      ))}
+      {tasks.map((task) => {
+        const status = getDeadlineStatus(task.deadline);
+        return (
+          <li key={task.id} className="task-item">
+            <span className={`task-text ${task.completed ? 'completed' : ''}`}>
+              {Boolean(task.completed) && <span className="check-icon">✅ </span>}
+              {status && (
+                <span className={`deadline-badge ${status.replace(' ', '').toLowerCase()}`}>
+                  {status}
+                </span>
+              )}
+              {task.title} ({task.category || "No category"}) – {task.deadline}
+            </span>
+            <button onClick={() => toggleComplete(task)}>
+              {task.completed ? 'Undo' : 'Done'}
+            </button>
+            <button onClick={() => deleteTask(task.id)} className="delete-btn">Delete</button>
+          </li>
+        );
+      })}
     </ul>
   );
 }
