@@ -3,12 +3,14 @@ import axios from 'axios';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 import FilterBar from './components/FilterBar';
+import Login from './components/Login';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [deadlineFilter, setDeadlineFilter] = useState('');
-  const [taskToEdit, setTaskToEdit] = useState(null); // NEW
+  const [taskToEdit, setTaskToEdit] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem('user') || '');
 
   const fetchTasks = async () => {
     try {
@@ -19,31 +21,31 @@ function App() {
     }
   };
 
-  const getFilteredTasks = () => {
-    return tasks.filter(task => {
-      const today = new Date().toISOString().split('T')[0];
-      const matchesCategory = selectedCategory ? task.category === selectedCategory : true;
-      let matchesDeadline = true;
+  useEffect(() => {
+    if (user) {
+      fetchTasks();
+    }
+  }, [user]);
 
-      if (deadlineFilter === 'today') matchesDeadline = task.deadline === today;
-      else if (deadlineFilter === 'upcoming') matchesDeadline = task.deadline > today;
-      else if (deadlineFilter === 'overdue') matchesDeadline = task.deadline < today;
-
-      return matchesCategory && matchesDeadline;
-    });
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser('');
+    setTasks([]);
+    setTaskToEdit(null);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
   const categories = [...new Set(tasks.map(task => task.category).filter(Boolean))];
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
+  }
 
   return (
     <div className="container">
       <header className="header">
         <h1>🧠 Smart Task Manager</h1>
-        <p className="subtitle">Organize, Prioritize, Conquer.</p>
+        <p className="subtitle">Welcome, {user}!</p>
+        <button onClick={handleLogout} className="logout-btn">Logout</button>
       </header>
 
       <TaskForm onAdd={fetchTasks} taskToEdit={taskToEdit} setTaskToEdit={setTaskToEdit} />
@@ -56,7 +58,7 @@ function App() {
         setDeadlineFilter={setDeadlineFilter}
       />
 
-      <TaskList tasks={getFilteredTasks()} onUpdate={fetchTasks} onEdit={setTaskToEdit} />
+      <TaskList tasks={tasks} onUpdate={fetchTasks} onEdit={setTaskToEdit} />
 
       <footer className="footer">
         <p>&copy; 2025 Jeeny Assessment – Made by Kumail 🚀</p>
